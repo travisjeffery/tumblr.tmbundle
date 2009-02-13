@@ -1,0 +1,11 @@
+Configuration
+=============
+
+Create a TM variable called "TM_TUMBLR_LOGIN" and put in your user/pass info as:
+"username:password".
+
+Usage
+=====
+
+Open a new post with the supplied template.
+Then invoke the command from the bundle.
