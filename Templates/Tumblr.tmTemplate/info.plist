@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby -wKU
+
+f = open(ENV["TM_NEW_FILE"], 'w')
+template = open("untitled.tumblr.html").read
+
+ENV["TM_YEAR"] = `date +%Y`.chomp
+ENV["TM_DATE"] = `date +%Y-%m-%d`.chomp
+
+if ENV["TM_SOFT_TABS"] == "YES"
+	tab_size = ENV["TM_TAB_SIZE"].to_i
+	tab_size = tab_size ? tab_size : 4
+	template = template.gsub(/\t/, " "*tab_size)
+end
+
+template = template.gsub(/[$]\{([^}]+)\}/){|match| "#{ENV[$1]}" }
+f.write template
+f.close
+</string>
+	<key>extension</key>
+	<string>tumbr.html</string>
+	<key>name</key>
+	<string>Tumblr Post (HTML)</string>
+	<key>uuid</key>
+	<string>BFEE051A-AC7D-4076-AEC5-9314C6D80649</string>
+</dict>
+</plist>

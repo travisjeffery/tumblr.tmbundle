@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Tumblr</string>
+	<key>ordering</key>
+	<array>
+		<string>1A804A04-6A57-46E6-9DEF-3275D8430E78</string>
+		<string>BFEE051A-AC7D-4076-AEC5-9314C6D80649</string>
+		<string>67AAF08F-8182-4C2C-8755-43A64900CCE1</string>
+	</array>
+	<key>uuid</key>
+	<string>E2C77CE9-5455-45B0-9EDB-50E313E506B6</string>
+</dict>
+</plist>

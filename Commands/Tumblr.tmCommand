@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby -wKU
+# (c) Copyright 2008 Travis Jeffery. All Rights Reserved. 
+
+require 'rubygems'
+require 'net/http'
+require 'uri'
+
+class Tumblr
+  def initialize(buffer)
+    @buffer = buffer
+  end
+  
+  def title
+    titleRegexp = Regexp.new('Title: (.*)')
+    titleRegexp.match(@buffer)
+    title = $1
+  end
+  
+  def body
+    body = @buffer
+    body = body.sub(/Title: .*/, '')
+    body = body.sub("Main entry text start", '')
+    body = body.sub("Main entry text end", '')
+    body = body.strip
+  end
+end
+
+buffer = STDIN.read # the whole document
+n = Tumblr.new(buffer) # send it off to the class to get the indie properties
+title = n.title # return the title
+body = n.body # ditto the body
+login = `echo $TM_TUMBLR_LOGIN` # get the tumblr account info
+/(.*):(.*)/.match(login)
+email = $1
+passw = $2
+res = Net::HTTP.post_form(URI.parse('http://www.tumblr.com/api/write'),
+                              {'email'=&gt;"#{email}", 'password'=&gt;"#{passw}", "title"=&gt;"#{title}", "body"=&gt;"#{body}"})</string>
+	<key>input</key>
+	<string>document</string>
+	<key>name</key>
+	<string>Tumblr Post</string>
+	<key>output</key>
+	<string>showAsTooltip</string>
+	<key>uuid</key>
+	<string>1A804A04-6A57-46E6-9DEF-3275D8430E78</string>
+</dict>
+</plist>
